@@ -1,5 +1,5 @@
 class Game2048 {
-    field Array board; // Matrica 4x4 spremljena kao niz od 16 elemenata
+    field Array board; 
     field int score, seed;
 
     constructor Game2048 new() {
@@ -8,7 +8,6 @@ class Game2048 {
         let score = 0;
         let seed = 1;
 
-        // Inicijalizacija polja (4x4 mreža)
         let i = 0;
         while (i < 16) {
             let x = 150 + ((i - ((i / 4) * 4)) * 55);
@@ -22,14 +21,13 @@ class Game2048 {
         return this;
     }
 
-    /** Stvara broj 2 na praznom polju */
     method void spawn() {
         var int i, pos;
         var Square s;
         let pos = seed;
         let i = 0;
         while (i < 16) {
-            let pos = (pos + 1) & 15; // Kruži kroz 0-15
+            let pos = (pos + 1) & 15;
             let s = board[pos];
             if (s.getValue() = 0) {
                 do s.setValue(2);
@@ -50,14 +48,14 @@ class Game2048 {
             let seed = seed + 1;
             if (seed > 1000) { let seed = 0; }
 
-            if (key = 130) { let moved = moveLeft(); }  // Lijevo
-            if (key = 132) { let moved = moveRight(); } // Desno
-            if (key = 131) { let moved = moveUp(); }    // Gore
-            if (key = 133) { let moved = moveDown(); }  // Dolje
-            if (key = 81)  { return; }                  // Q za izlaz
+            if (key = 130) { let moved = moveLeft(); }  
+            if (key = 132) { let moved = moveRight(); } 
+            if (key = 131) { let moved = moveUp(); }    
+            if (key = 133) { let moved = moveDown(); } 
+            if (key = 81)  { return; }                  
 
             if (moved) {
-                do Sys.wait(200); // Kratka pauza da se tipka ne registrira više puta
+                do Sys.wait(200); 
                 do spawn();
                 do Output.moveCursor(0, 0);
                 do Output.printString("Score: ");
@@ -67,7 +65,7 @@ class Game2048 {
         return;
     }
 
-    /** Logika za pomicanje ulijevo (primjer za ostale smjerove) */
+    
 method boolean moveLeft() {
         var int row, col, current, target;
         var Square sCurr, sTarget;
